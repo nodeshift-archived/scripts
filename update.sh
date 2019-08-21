@@ -17,7 +17,7 @@ istanbul="\"~0.4.5\""
 jsyaml="\"^3.13.1"\"
 keycloakconnect="\"^6.0.1"\"
 kubeprobe="\"~0.3.2\""
-licensereporter="\"~1.2.0\""
+licensereporter="\"~1.2.2\""
 nodeshift="\"~3.0.1\""
 nyc="\"~14.1.1\""
 opossum="\"~1.11.1"\"
@@ -332,39 +332,39 @@ start_process() {
 
     cd nodejs-cache
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-circuit-breaker
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-configmap
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-health-check
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-messaging-work-queue
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-rest-http-crud
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-rest-http
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-rest-http-secured
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-istio-tracing
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
 
     cd ..          # back to repositories directory
@@ -372,39 +372,39 @@ start_process() {
 
     cd nodejs-cache
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-circuit-breaker
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-configmap
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-health-check
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-messaging-work-queue
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-rest-http-crud
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-rest-http
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-rest-http-secured
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-istio-tracing
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     git checkout 10.x
 
     cd ..          # back to repositories directory
@@ -412,70 +412,70 @@ start_process() {
 
     cd nodejs-cache
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-circuit-breaker
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-configmap
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-health-check
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-messaging-work-queue
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-rest-http-crud
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-rest-http
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-rest-http-secured
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
     cd ../nodejs-istio-tracing
     git_commit
-    # git push origin 10.x
+    git push origin 10.x
 
     cd ..            # back to repositories directory
     version_updaterh # updates all the master (10.x) branches
 
     cd nodejs-cache-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-circuit-breaker-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-configmap-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-health-check-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-messaging-work-queue-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-rest-http-crud-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-rest-http-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-rest-http-secured-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
     cd ../nodejs-istio-tracing-redhat
     git_commit
-    # git push origin master
+    git push origin master
     git checkout 8.x
 
     cd ..            # back to repositories directory
@@ -483,31 +483,31 @@ start_process() {
 
     cd nodejs-cache-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-circuit-breaker-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-configmap-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-health-check-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-messaging-work-queue-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-rest-http-crud-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-rest-http-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-rest-http-secured-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd ../nodejs-istio-tracing-redhat
     git_commit
-    # git push origin 8.x
+    git push origin 8.x
     cd .. # back to repositories directory
     exit 0
   else
