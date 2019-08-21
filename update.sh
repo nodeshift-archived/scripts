@@ -66,7 +66,6 @@ jsonfilesrh=(
 )
 
 git_commit() {
-  npm install --silent
   git add .
   git commit -m "chore: dependency update"
 }
@@ -282,7 +281,7 @@ version_updaterh() {
 }
 
 cleanup() {
-  printf "%s\n" "Removing repositories if exist..."
+  printf "%s\n" "Removing 'repositories' directory if exist..."
   if [ -d "repositories" ]; then
     rm -Rf repositories
   fi
@@ -317,7 +316,8 @@ info() {
   printf "\n"
   printf "%s\n" "WARNING: Please be sure you are running this script"
   printf "%s\n" "inside an empty directory. This script will try to "
-  printf "%s\n" "remove the examples before to start the process."
+  printf "%s\n" "remove the 'repositories' directory before to start "
+  printf "%s\n" "the process."
   printf "\n"
 }
 
