@@ -5,8 +5,6 @@
 #: Version     : 0.0.1
 #: Description : Script to automate npm audit fix for RHOAR examples
 
-## NOT COMPLETE, need more rounds of tests and add the directories for the remaining repositories
-
 git_commit() {
   git add .
   git commit -m "chore: npm audit fix"
@@ -83,15 +81,15 @@ start_process() {
       cd $i
       audit_fix
       git_commit
-      # git push origin master
+      git push origin master
       git checkout 8.x
       audit_fix
       git_commit
-      # git push origin 8.x
+      git push origin 8.x
       git checkout 10.x
       audit_fix
       git_commit
-      # git push origin 10.x
+      git push origin 10.x
       cd .. # back to repositories
     done
 
@@ -99,106 +97,191 @@ start_process() {
       cd $i
       audit_fix
       git_commit
-      # git push origin master
+      git push origin master
       git checkout 8.x
       audit_fix
       git_commit
-      # git push origin 8.x
+      git push origin 8.x
       cd .. # back to repositories
     done
 
+    cd nodejs-cache/cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+    git checkout 10.x
+    cd cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 10.x
+
+    cd .. # back to repositories
+
+    cd nodejs-cache-redhat/cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+
+    cd .. # back to repositories
+
+    cd nodejs-circuit-breaker/greeting-service/
+    audit_fix
+    cd ../name-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd greeting-service
+    audit_fix
+    cd ../name-service
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+    git checkout 10.x
+    cd greeting-service
+    audit_fix
+    cd ../name-service
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 10.x
+
+    cd .. # back to repositories
+
+    cd nodejs-circuit-breaker-redhat/greeting-service/
+    audit_fix
+    cd ../name-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd greeting-service
+    audit_fix
+    cd ../name-service
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+
+    cd .. # back to repositories
+
+    cd nodejs-messaging-work-queue/frontend/
+    audit_fix
+    cd ../worker/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd frontend
+    audit_fix
+    cd ../worker
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+    git checkout 10.x
+    cd frontend
+    audit_fix
+    cd ../worker
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 10.x
+
+    cd .. # back to repositories
+
+    cd nodejs-messaging-work-queue-redhat/frontend/
+    audit_fix
+    cd ../worker/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd frontend
+    audit_fix
+    cd ../worker
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+
+    cd .. # back to repositories
+
+    cd nodejs-istio-tracing/cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd cute-name-service
+    audit_fix
+    cd ../greeting-service
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+    git checkout 10.x
+    cd cute-name-service
+    audit_fix
+    cd ../greeting-service
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 10.x
+
+    cd .. # back to repositories
+
+    cd nodejs-istio-tracing-redhat/cute-name-service/
+    audit_fix
+    cd ../greeting-service/
+    audit_fix
+    cd ..
+    git_commit
+    git push origin master
+    git checkout 8.x
+    cd cute-name-service
+    audit_fix
+    cd ../greeting-service
+    audit_fix
+    cd ..
+    git_commit
+    git push origin 8.x
+
+    cd .. # back to repositories
+
     pwd
-
-    # cd nodejs-cache/cute-name-service/
-    # audit_fix
-    # cd ../greeting-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin master
-    # git checkout 8.x
-    # cd cute-name-service/
-    # audit_fix
-    # cd ../greeting-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin 8.x
-    # git checkout 10.x
-    # cd cute-name-service/
-    # audit_fix
-    # cd ../greeting-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin 10.x
-
-    # cd .. # back to repositories
-
-    # cd nodejs-cache-redhat/cute-name-service/
-    # audit_fix
-    # cd ../greeting-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin master
-    # git checkout 8.x
-    # cd cute-name-service/
-    # audit_fix
-    # cd ../greeting-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin 8.x
-
-    # cd .. # back to repositories
-
-    # cd nodejs-circuit-breaker/greeting-service/
-    # audit_fix
-    # cd ../name-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin master
-    # git checkout 8.x
-    # cd greeting-service
-    # audit_fix
-    # cd ../name-service
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin 8.x
-    # git checkout 10.x
-    # cd greeting-service
-    # audit_fix
-    # cd ../name-service
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin 10.x
-
-    # cd .. # back to repositories
-
-    # cd nodejs-circuit-breaker-redhat/greeting-service/
-    # audit_fix
-    # cd ../name-service/
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin master
-    # git checkout 8.x
-    # cd greeting-service
-    # audit_fix
-    # cd ../name-service
-    # audit_fix
-    # cd ..
-    # git_commit
-    # git push origin 8.x
-
-    # nodejs-messaging-work-queue/frontend/package.json
-    # nodejs-messaging-work-queue/worker/package.json
-    # nodejs-istio-tracing/cute-name-service/package.json
-    # nodejs-istio-tracing/greeting-service/package.json
 
     exit 0
   else
