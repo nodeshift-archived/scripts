@@ -40,6 +40,10 @@ git_clone() {
     git clone git@github.com:nodeshift-starters/nodejs-istio-tracing-redhat.git
     git clone git@github.com:nodeshift-starters/nodejs-messaging-work-queue.git
     git clone git@github.com:nodeshift-starters/nodejs-messaging-work-queue-redhat.git
+    CACHE="1"
+    CIRCUIT="1"
+    ISTIO="1"
+    MESSAGING="1"
   else
     read -p "Release nodejs-cache (y/n)? " C
     if [ "$C" = "y" ]; then
@@ -69,23 +73,62 @@ git_clone() {
 }
 
 update_cache() {
-  sed -i "0,$1/s/$1/$2/" cute-name-service/package.json
-  sed -i "0,$1/s/$1/$2/" greeting-service/package.json
-  sed -i "0,$1/s/$1/$2/" cute-name-service/.openshiftio/application.yaml
-  sed -i "0,$1/s/$1/$2/" greeting-service/.openshiftio/application.yaml
+  sed -i "0,/$1/s/$1/$2/" cute-name-service/package.json
+  sed -i "0,/$1/s/$1/$2/" greeting-service/package.json
+  sed -i "0,/$1/s/$1/$2/" cute-name-service/.openshiftio/application.yaml
+  sed -i "0,/$1/s/$1/$2/" greeting-service/.openshiftio/application.yaml
   cd cute-name-service
   npm install --silent
-  npm audit fix
   cd ..
   cd greeting-service
   npm install --silent
-  npm audit fix
+  cd ..
+}
+
+update_circuit() {
+  sed -i "0,/$1/s/$1/$2/" greeting-service/package.json
+  sed -i "0,/$1/s/$1/$2/" name-service/package.json
+  sed -i "0,/$1/s/$1/$2/" greeting-service/.openshiftio/application.yaml
+  sed -i "0,/$1/s/$1/$2/" name-service/.openshiftio/application.yaml
+  cd greeting-service
+  npm install --silent
+  cd ..
+  cd name-service
+  npm install --silent
+  cd ..
+}
+
+update_istio() {
+  sed -i "0,/$1/s/$1/$2/" cute-name-service/package.json
+  sed -i "0,/$1/s/$1/$2/" greeting-service/package.json
+  sed -i "0,/$1/s/$1/$2/" cute-name-service/.openshiftio/application.yaml
+  sed -i "0,/$1/s/$1/$2/" greeting-service/.openshiftio/application.yaml
+  cd cute-name-service
+  npm install --silent
+  cd ..
+  cd greeting-service
+  npm install --silent
+  cd ..
+}
+
+update_messaging() {
+  sed -i "0,/$1/s/$1/$2/" frontend/package.json
+  sed -i "0,/$1/s/$1/$2/" worker/package.json
+  sed -i "0,/$1/s/$1/$2/" frontend/.openshiftio/application.yaml
+  sed -i "0,/$1/s/$1/$2/" worker/.openshiftio/application.yaml
+  cd frontend
+  npm install --silent
+  cd ..
+  cd worker
+  npm install --silent
   cd ..
 }
 
 read_new() {
   BR=$(git rev-parse --abbrev-ref HEAD)
-  printf "%s\n" "The current version for node-cache $BR is: $1"
+  CURDIR=$(pwd)
+  printf "%s\n" "You are in $CURDIR"
+  printf "%s\n" "The current version for branch $BR is: $1"
   printf "%s\n" "What is the new version number?"
   read NEW
 }
@@ -101,8 +144,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    # git push origin v$NEW
-    # git push origin 8.x
+    git push origin v$NEW
+    git push origin 8.x
 
     cd ../nodejs-cache-redhat
     git checkout 8.x
@@ -111,8 +154,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    # git push origin v$NEW
-    # git push origin 8.x
+    git push origin v$NEW
+    git push origin 8.x
 
     cd ../nodejs-cache
     git checkout 10.x
@@ -123,8 +166,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    # git push origin v$NEW
-    # git push origin 10.x
+    git push origin v$NEW
+    git push origin 10.x
 
     cd ../nodejs-cache-redhat
     git checkout master
@@ -133,8 +176,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    # git push origin v$NEW
-    # git push origin master
+    git push origin v$NEW
+    git push origin master
 
     cd ../nodejs-cache
     git checkout master
@@ -145,8 +188,182 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    # git push origin v$NEW
-    # git push origin master
+    git push origin v$NEW
+    git push origin master
+    cd .. # back to repositories
+  fi
+  if [ ! -z $CIRCUIT ]; then
+    cd nodejs-circuit-breaker
+    git checkout 8.x
+    local CURR=$( (sed -n '3p' greeting-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_circuit $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 8.x
+
+    cd ../nodejs-circuit-breaker-redhat
+    git checkout 8.x
+    update_circuit $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 8.x
+
+    cd ../nodejs-circuit-breaker
+    git checkout 10.x
+    CURR=$( (sed -n '3p' greeting-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_circuit $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 10.x
+
+    cd ../nodejs-circuit-breaker-redhat
+    git checkout master
+    update_circuit $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin master
+
+    cd ../nodejs-circuit-breaker
+    git checkout master
+    CURR=$( (sed -n '3p' greeting-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_circuit $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin master
+    cd .. # back to repositories
+  fi
+  if [ ! -z $ISTIO ]; then
+    cd nodejs-istio-tracing
+    git checkout 8.x
+    local CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_istio $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 8.x
+
+    cd ../nodejs-istio-tracing-redhat
+    git checkout 8.x
+    update_istio $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 8.x
+
+    cd ../nodejs-istio-tracing
+    git checkout 10.x
+    CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_istio $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 10.x
+
+    cd ../nodejs-istio-tracing-redhat
+    git checkout master
+    update_istio $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin master
+
+    cd ../nodejs-istio-tracing
+    git checkout master
+    CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_istio $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin master
+    cd .. # back to repositories
+  fi
+  if [ ! -z $MESSAGING ]; then
+    cd nodejs-messaging-work-queue
+    git checkout 8.x
+    local CURR=$( (sed -n '3p' frontend/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_messaging $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 8.x
+
+    cd ../nodejs-messaging-work-queue-redhat
+    git checkout 8.x
+    update_messaging $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 8.x
+
+    cd ../nodejs-messaging-work-queue
+    git checkout 10.x
+    CURR=$( (sed -n '3p' frontend/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_messaging $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin 10.x
+
+    cd ../nodejs-messaging-work-queue-redhat
+    git checkout master
+    update_messaging $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin master
+
+    cd ../nodejs-messaging-work-queue
+    git checkout master
+    CURR=$( (sed -n '3p' frontend/package.json | cut -c 15- | rev | cut -c 3- | rev))
+    read_new $CURR
+    update_messaging $CURR $NEW
+    git add .
+    git commit -m "chore: $NEW release"
+    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
+    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
+    git push origin v$NEW
+    git push origin master
     cd .. # back to repositories
   fi
 }
@@ -157,7 +374,6 @@ start_process() {
     cleanup
     git_clone
     update_version
-    pwd
     exit 0
   else
     exit 0
