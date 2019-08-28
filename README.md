@@ -114,4 +114,4 @@ What is the new version number?
 
 Answer the questions and wait until finish.
 
-Is always good to run `audit-fix.sh` before to use the `release.sh`.
+It's always good to run `audit-fix.sh` before to use the `release.sh`.
