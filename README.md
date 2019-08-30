@@ -47,6 +47,8 @@ This script is good to use when [greenkeeper](https://greenkeeper.io/) send a pu
 on master branch and/or when we know a dependency needs to be updated for some reason. The script will update all the examples and branches
 to keep them consistent.
 
+> Some dependencies are not covered by this script like `standard-version` and `xo`, because both has extra configuration inside `package.json`.
+
 ### How to use
 
 ```console
