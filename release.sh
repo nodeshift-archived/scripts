@@ -7,7 +7,6 @@
 
 CACHE=""
 CIRCUIT=""
-ISTIO=""
 MESSAGING=""
 
 info() {
@@ -36,13 +35,10 @@ git_clone() {
     git clone git@github.com:nodeshift-starters/nodejs-cache-redhat.git
     git clone git@github.com:nodeshift-starters/nodejs-circuit-breaker.git
     git clone git@github.com:nodeshift-starters/nodejs-circuit-breaker-redhat.git
-    git clone git@github.com:nodeshift-starters/nodejs-istio-tracing.git
-    git clone git@github.com:nodeshift-starters/nodejs-istio-tracing-redhat.git
     git clone git@github.com:nodeshift-starters/nodejs-messaging-work-queue.git
     git clone git@github.com:nodeshift-starters/nodejs-messaging-work-queue-redhat.git
     CACHE="1"
     CIRCUIT="1"
-    ISTIO="1"
     MESSAGING="1"
   else
     read -p "Release nodejs-cache (y/n)? " C
@@ -56,12 +52,6 @@ git_clone() {
       CIRCUIT="1"
       git clone git@github.com:nodeshift-starters/nodejs-circuit-breaker.git
       git clone git@github.com:nodeshift-starters/nodejs-circuit-breaker-redhat.git
-    fi
-    read -p "Release nodejs-istio-tracing (y/n)? " C
-    if [ "$C" = "y" ]; then
-      ISTIO="1"
-      git clone git@github.com:nodeshift-starters/nodejs-istio-tracing.git
-      git clone git@github.com:nodeshift-starters/nodejs-istio-tracing-redhat.git
     fi
     read -p "Release nodejs-messaging-work-queue (y/n)? " C
     if [ "$C" = "y" ]; then
@@ -94,19 +84,6 @@ update_circuit() {
   npm install --silent
   cd ..
   cd name-service
-  npm install --silent
-  cd ..
-}
-
-update_istio() {
-  sed -i "0,/$1/s/$1/$2/" cute-name-service/package.json
-  sed -i "0,/$1/s/$1/$2/" greeting-service/package.json
-  sed -i "0,/$1/s/$1/$2/" cute-name-service/.openshiftio/application.yaml
-  sed -i "0,/$1/s/$1/$2/" greeting-service/.openshiftio/application.yaml
-  cd cute-name-service
-  npm install --silent
-  cd ..
-  cd greeting-service
   npm install --silent
   cd ..
 }
@@ -242,64 +219,6 @@ update_version() {
     CURR=$( (sed -n '3p' greeting-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
     read_new $CURR
     update_circuit $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
-    cd .. # back to repositories
-  fi
-  if [ ! -z $ISTIO ]; then
-    cd nodejs-istio-tracing
-    git checkout 8.x
-    local CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
-    read_new $CURR
-    update_istio $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-istio-tracing-redhat
-    git checkout 8.x
-    update_istio $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-istio-tracing
-    git checkout 10.x
-    CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
-    read_new $CURR
-    update_istio $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 10.x
-
-    cd ../nodejs-istio-tracing-redhat
-    git checkout master
-    update_istio $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
-
-    cd ../nodejs-istio-tracing
-    git checkout master
-    CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
-    read_new $CURR
-    update_istio $CURR $NEW
     git add .
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")

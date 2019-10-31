@@ -42,8 +42,6 @@ git_clone() {
   git clone git@github.com:nodeshift-starters/nodejs-rest-http-redhat.git
   git clone git@github.com:nodeshift-starters/nodejs-rest-http-secured.git
   git clone git@github.com:nodeshift-starters/nodejs-rest-http-secured-redhat.git
-  git clone git@github.com:nodeshift-starters/nodejs-istio-tracing.git
-  git clone git@github.com:nodeshift-starters/nodejs-istio-tracing-redhat.git
 }
 
 info() {
@@ -230,50 +228,6 @@ start_process() {
     cd frontend
     audit_fix
     cd ../worker
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
-
-    cd .. # back to repositories
-
-    cd nodejs-istio-tracing/cute-name-service/
-    audit_fix
-    cd ../greeting-service/
-    audit_fix
-    cd ..
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd cute-name-service
-    audit_fix
-    cd ../greeting-service
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
-    git checkout 10.x
-    cd cute-name-service
-    audit_fix
-    cd ../greeting-service
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 10.x
-
-    cd .. # back to repositories
-
-    cd nodejs-istio-tracing-redhat/cute-name-service/
-    audit_fix
-    cd ../greeting-service/
-    audit_fix
-    cd ..
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd cute-name-service
-    audit_fix
-    cd ../greeting-service
     audit_fix
     cd ..
     git_commit

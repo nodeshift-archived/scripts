@@ -45,8 +45,6 @@ jsonfiles=(
   nodejs-rest-http-crud/package.json
   nodejs-rest-http/package.json
   nodejs-rest-http-secured/package.json
-  nodejs-istio-tracing/cute-name-service/package.json
-  nodejs-istio-tracing/greeting-service/package.json
 )
 
 jsonfilesrh=(
@@ -61,8 +59,6 @@ jsonfilesrh=(
   nodejs-rest-http-crud-redhat/package.json
   nodejs-rest-http-redhat/package.json
   nodejs-rest-http-secured-redhat/package.json
-  nodejs-istio-tracing-redhat/cute-name-service/package.json
-  nodejs-istio-tracing-redhat/greeting-service/package.json
 )
 
 git_commit() {
@@ -307,8 +303,6 @@ git_clone() {
   git clone git@github.com:nodeshift-starters/nodejs-rest-http-redhat.git
   git clone git@github.com:nodeshift-starters/nodejs-rest-http-secured.git
   git clone git@github.com:nodeshift-starters/nodejs-rest-http-secured-redhat.git
-  git clone git@github.com:nodeshift-starters/nodejs-istio-tracing.git
-  git clone git@github.com:nodeshift-starters/nodejs-istio-tracing-redhat.git
   cd ..
 }
 
@@ -362,10 +356,6 @@ start_process() {
     git_commit
     git push origin master
     git checkout 8.x
-    cd ../nodejs-istio-tracing
-    git_commit
-    git push origin master
-    git checkout 8.x
 
     cd ..          # back to repositories directory
     version_update # updates all the 8x branches
@@ -402,10 +392,6 @@ start_process() {
     git_commit
     git push origin 8.x
     git checkout 10.x
-    cd ../nodejs-istio-tracing
-    git_commit
-    git push origin 8.x
-    git checkout 10.x
 
     cd ..          # back to repositories directory
     version_update # updates all the 10x branches
@@ -432,9 +418,6 @@ start_process() {
     git_commit
     git push origin 10.x
     cd ../nodejs-rest-http-secured
-    git_commit
-    git push origin 10.x
-    cd ../nodejs-istio-tracing
     git_commit
     git push origin 10.x
 
@@ -473,10 +456,6 @@ start_process() {
     git_commit
     git push origin master
     git checkout 8.x
-    cd ../nodejs-istio-tracing-redhat
-    git_commit
-    git push origin master
-    git checkout 8.x
 
     cd ..            # back to repositories directory
     version_updaterh # updates all the 8.x branches
@@ -503,9 +482,6 @@ start_process() {
     git_commit
     git push origin 8.x
     cd ../nodejs-rest-http-secured-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-istio-tracing-redhat
     git_commit
     git push origin 8.x
     cd .. # back to repositories directory

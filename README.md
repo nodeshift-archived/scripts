@@ -105,7 +105,6 @@ Done.
 Release all the examples (y/n)? n
 Release nodejs-cache (y/n)? n
 Release nodejs-circuit-breaker (y/n)? n
-Release nodejs-istio-tracing (y/n)? n
 Release nodejs-messaging-work-queue (y/n)? y
 
 You are in .../nodejs-messaging-work-queue
