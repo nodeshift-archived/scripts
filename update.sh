@@ -322,75 +322,39 @@ start_process() {
     git_clone
 
     cd repositories
-    version_update # updates all the master (12.x) branches
+    version_update # updates all the master (Node.js version 12.x) branches
 
     cd nodejs-cache
     git_commit
     git push origin master
-    git checkout 8.x
-    cd ../nodejs-circuit-breaker
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd ../nodejs-configmap
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd ../nodejs-health-check
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd ../nodejs-messaging-work-queue
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd ../nodejs-rest-http-crud
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd ../nodejs-rest-http
-    git_commit
-    git push origin master
-    git checkout 8.x
-    cd ../nodejs-rest-http-secured
-    git_commit
-    git push origin master
-    git checkout 8.x
-
-    cd ..          # back to repositories directory
-    version_update # updates all the 8x branches
-
-    cd nodejs-cache
-    git_commit
-    git push origin 8.x
     git checkout 10.x
     cd ../nodejs-circuit-breaker
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
     cd ../nodejs-configmap
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
     cd ../nodejs-health-check
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
     cd ../nodejs-messaging-work-queue
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
     cd ../nodejs-rest-http-crud
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
     cd ../nodejs-rest-http
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
     cd ../nodejs-rest-http-secured
     git_commit
-    git push origin 8.x
+    git push origin master
     git checkout 10.x
 
     cd ..          # back to repositories directory
@@ -422,69 +386,35 @@ start_process() {
     git push origin 10.x
 
     cd ..            # back to repositories directory
-    version_updaterh # updates all the master (10.x) branches
+    version_updaterh # updates all the master (Node.js version 10.x) branches
 
     cd nodejs-cache-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-circuit-breaker-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-configmap-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-health-check-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-messaging-work-queue-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-rest-http-crud-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-rest-http-redhat
     git_commit
     git push origin master
-    git checkout 8.x
     cd ../nodejs-rest-http-secured-redhat
     git_commit
     git push origin master
-    git checkout 8.x
 
     cd ..            # back to repositories directory
-    version_updaterh # updates all the 8.x branches
 
-    cd nodejs-cache-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-circuit-breaker-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-configmap-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-health-check-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-messaging-work-queue-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-rest-http-crud-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-rest-http-redhat
-    git_commit
-    git push origin 8.x
-    cd ../nodejs-rest-http-secured-redhat
-    git_commit
-    git push origin 8.x
-    cd .. # back to repositories directory
     exit 0
   else
     exit 0
