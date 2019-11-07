@@ -80,10 +80,6 @@ start_process() {
       audit_fix
       git_commit
       git push origin master
-      git checkout 8.x
-      audit_fix
-      git_commit
-      git push origin 8.x
       git checkout 10.x
       audit_fix
       git_commit
@@ -96,10 +92,6 @@ start_process() {
       audit_fix
       git_commit
       git push origin master
-      git checkout 8.x
-      audit_fix
-      git_commit
-      git push origin 8.x
       cd .. # back to repositories
     done
 
@@ -110,14 +102,6 @@ start_process() {
     cd ..
     git_commit
     git push origin master
-    git checkout 8.x
-    cd cute-name-service/
-    audit_fix
-    cd ../greeting-service/
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
     git checkout 10.x
     cd cute-name-service/
     audit_fix
@@ -136,14 +120,6 @@ start_process() {
     cd ..
     git_commit
     git push origin master
-    git checkout 8.x
-    cd cute-name-service/
-    audit_fix
-    cd ../greeting-service/
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
 
     cd .. # back to repositories
 
@@ -154,14 +130,6 @@ start_process() {
     cd ..
     git_commit
     git push origin master
-    git checkout 8.x
-    cd greeting-service
-    audit_fix
-    cd ../name-service
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
     git checkout 10.x
     cd greeting-service
     audit_fix
@@ -180,14 +148,6 @@ start_process() {
     cd ..
     git_commit
     git push origin master
-    git checkout 8.x
-    cd greeting-service
-    audit_fix
-    cd ../name-service
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
 
     cd .. # back to repositories
 
@@ -198,14 +158,6 @@ start_process() {
     cd ..
     git_commit
     git push origin master
-    git checkout 8.x
-    cd frontend
-    audit_fix
-    cd ../worker
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
     git checkout 10.x
     cd frontend
     audit_fix
@@ -224,14 +176,6 @@ start_process() {
     cd ..
     git_commit
     git push origin master
-    git checkout 8.x
-    cd frontend
-    audit_fix
-    cd ../worker
-    audit_fix
-    cd ..
-    git_commit
-    git push origin 8.x
 
     cd .. # back to repositories
 
