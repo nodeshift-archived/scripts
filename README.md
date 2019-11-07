@@ -2,7 +2,7 @@
 
 This repository contains scripts to help to update and release the examples.
 
-Since each example has between 2 and 3 branches, these scripts help automate simple tasks.
+Since each example has more than one branch, these scripts help automate simple tasks.
 
 ## Audit-fix script
 
