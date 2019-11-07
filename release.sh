@@ -113,7 +113,7 @@ read_new() {
 update_version() {
   if [ ! -z $CACHE ]; then
     cd nodejs-cache
-    git checkout 8.x
+    git checkout 10.x
     local CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
     read_new $CURR
     update_cache $CURR $NEW
@@ -121,30 +121,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-cache-redhat
-    git checkout 8.x
-    update_cache $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-cache
-    git checkout 10.x
-    CURR=$( (sed -n '3p' cute-name-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
-    read_new $CURR
-    update_cache $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 10.x
+    # git push origin v$NEW
+    # git push origin 10.x
 
     cd ../nodejs-cache-redhat
     git checkout master
@@ -153,8 +131,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
+    # git push origin v$NEW
+    # git push origin master
 
     cd ../nodejs-cache
     git checkout master
@@ -165,13 +143,13 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
+    # git push origin v$NEW
+    # git push origin master
     cd .. # back to repositories
   fi
   if [ ! -z $CIRCUIT ]; then
     cd nodejs-circuit-breaker
-    git checkout 8.x
+    git checkout 10.x
     local CURR=$( (sed -n '3p' greeting-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
     read_new $CURR
     update_circuit $CURR $NEW
@@ -179,30 +157,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-circuit-breaker-redhat
-    git checkout 8.x
-    update_circuit $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-circuit-breaker
-    git checkout 10.x
-    CURR=$( (sed -n '3p' greeting-service/package.json | cut -c 15- | rev | cut -c 3- | rev))
-    read_new $CURR
-    update_circuit $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 10.x
+    # git push origin v$NEW
+    # git push origin 10.x
 
     cd ../nodejs-circuit-breaker-redhat
     git checkout master
@@ -211,8 +167,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
+    # git push origin v$NEW
+    # git push origin master
 
     cd ../nodejs-circuit-breaker
     git checkout master
@@ -223,13 +179,13 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
+    # git push origin v$NEW
+    # git push origin master
     cd .. # back to repositories
   fi
   if [ ! -z $MESSAGING ]; then
     cd nodejs-messaging-work-queue
-    git checkout 8.x
+    git checkout 10.x
     local CURR=$( (sed -n '3p' frontend/package.json | cut -c 15- | rev | cut -c 3- | rev))
     read_new $CURR
     update_messaging $CURR $NEW
@@ -237,30 +193,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     local LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-messaging-work-queue-redhat
-    git checkout 8.x
-    update_messaging $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 8.x
-
-    cd ../nodejs-messaging-work-queue
-    git checkout 10.x
-    CURR=$( (sed -n '3p' frontend/package.json | cut -c 15- | rev | cut -c 3- | rev))
-    read_new $CURR
-    update_messaging $CURR $NEW
-    git add .
-    git commit -m "chore: $NEW release"
-    LASTCOMMIT=$(git log -1 --pretty=format:"%h")
-    git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin 10.x
+    # git push origin v$NEW
+    # git push origin 10.x
 
     cd ../nodejs-messaging-work-queue-redhat
     git checkout master
@@ -269,8 +203,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
+    # git push origin v$NEW
+    # git push origin master
 
     cd ../nodejs-messaging-work-queue
     git checkout master
@@ -281,8 +215,8 @@ update_version() {
     git commit -m "chore: $NEW release"
     LASTCOMMIT=$(git log -1 --pretty=format:"%h")
     git tag v$NEW $LASTCOMMIT -m "chore: $NEW release"
-    git push origin v$NEW
-    git push origin master
+    # git push origin v$NEW
+    # git push origin master
     cd .. # back to repositories
   fi
 }
