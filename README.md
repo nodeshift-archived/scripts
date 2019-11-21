@@ -8,10 +8,7 @@ Since each example has more than one branch, these scripts help automate simple 
 
 The `audit-fix.sh` script goes through all examples applying `npm install` and `npm audit fix`. 
 
-This is useful to:
-
-1. Automate dependency remediation to remove vulnerability warnings.
-2. Reduce the time taken by the `release.sh` script.
+This is useful toa utomate dependency remediation to remove vulnerability warnings.
 
 This script is good to use when we start to notice a good amount of warnings reported by npm audit.
 
@@ -77,42 +74,3 @@ Continue (y/n)? y
 
 Wait until finish.
 
-## Release script
-
-The `release.sh` script goes through all examples, or specific example (your choice) changing the version and creating tags for each branch. 
-
-This is useful to:
-
-1. Automate the release processes.
-
-### How to use
-
-( Example of nodejs-messaging-work-queue release )
-
-```console
-$ git clone git@github.com:nodeshift-starters/scripts.git
-$ cd scripts
-$ ./release.sh
-
-WARNING: Please be sure you are running this script
-inside an empty directory. This script will try to 
-remove the 'repositories' directory before to start 
-the process.
-
-Continue (y/n)? y
-Removing 'repositories' directory if exist...
-Done.
-Release all the examples (y/n)? n
-Release nodejs-cache (y/n)? n
-Release nodejs-circuit-breaker (y/n)? n
-Release nodejs-messaging-work-queue (y/n)? y
-
-You are in .../nodejs-messaging-work-queue
-The current version for branch 8.x is: 1.1.1
-What is the new version number?
-1.1.2
-```
-
-Answer the questions and wait until finish.
-
-It's always good to run `audit-fix.sh` before to use the `release.sh`.
