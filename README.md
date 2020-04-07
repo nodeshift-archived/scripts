@@ -8,7 +8,7 @@ Since each example has more than one branch, these scripts help automate simple 
 
 The `audit-fix.sh` script goes through all examples applying `npm install` and `npm audit fix`. 
 
-This is useful toa utomate dependency remediation to remove vulnerability warnings.
+This is useful to automate dependency remediation to remove vulnerability warnings.
 
 This script is good to use when we start to notice a good amount of warnings reported by npm audit.
 
