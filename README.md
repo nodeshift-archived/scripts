@@ -1,4 +1,4 @@
-# scripts
+# DEPRECATED
 
 This repository contains scripts to help to update and release the examples.
 
